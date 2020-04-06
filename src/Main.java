@@ -1,21 +1,22 @@
+import java.lang.reflect.Array;
+import java.util.Collection;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
         // Beispielprojekt, das eine "Generic Box" Klasse nutzt für entweder ein ArrayMaker Objekt ODER ein Nummernarray
+        //specialised: die generische Klasse bietet eine Methode zum instantiieren der gespeicherten Klasse. die Wildcard T wird
+        // nicht mehr im Feld der Klasse verwendet, sondern nur in dieser Methode, als Ausgabetyp und zum casten
 
-        //die Objekte fürs spätere assigne
-        ArrayMaker arrio = new ArrayMaker();
-        NumbersMaker numberio = new NumbersMaker();
+        GenericContainer<ArrayMaker> generio = new GenericContainer(ArrayMaker.class); //ab hier hab ich ein Objekt GenCon das
+        //die Variable eineKlasse beinhaltet, vom Typ ArrayMaker
+        ArrayMaker objektAM = generio.erstellInstanz(); //Klasse wurde aus Variable gelesen und zum Objekt gemacht
 
-        //ich spezifiziere die GenericBox als für eine der beiden Objekt-Klassen geeignet
-        GenericContainer<ArrayMaker> generio = new GenericContainer<>();
+        Collection endlichColl = objektAM.stringArray; //Methode aus Objekt wurde zum erstellen des Arrays genutzt
 
-
-        //ich stelle fest, nur ArrayMaker-Objekte werden beim beschreiben des GenericContainers akzeptiert
-        generio.t = arrio;
-
-        //ich habe einen generic Container, von dem ich sicher sein kann, was er enthält
+        for (Object stringis : endlichColl) {
+            System.out.println(stringis);
+        }
     }
 
 }
