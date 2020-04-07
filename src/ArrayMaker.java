@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 public class ArrayMaker {
 
-    public ArrayList stringArray;
+    public ArrayList einArray;
 
     public ArrayMaker() {
-        stringArray = createAL(promptWieviele());
+        einArray = createAL(promptWieviele());
     }
 
     public int promptWieviele() {
@@ -25,6 +25,6 @@ public class ArrayMaker {
     }
 
     public ArrayList get() {
-        return stringArray;
+        return einArray;
     }
 }

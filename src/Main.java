@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Collection;
 
 public class Main {
@@ -9,13 +8,25 @@ public class Main {
         // nicht mehr im Feld der Klasse verwendet, sondern nur in dieser Methode, als Ausgabetyp und zum casten
 
         GenericContainer<ArrayMaker> generio = new GenericContainer(ArrayMaker.class); //ab hier hab ich ein Objekt GenCon das
-        //die Variable eineKlasse beinhaltet, vom Typ ArrayMaker
-        ArrayMaker objektAM = generio.erstellInstanz(); //Klasse wurde aus Variable gelesen und zum Objekt gemacht
+        //die Variable für eine Klasse beinhaltet, vom Typ ArrayMaker <-- ab hier steht die Entscheidung für ArrayMaker
 
-        Collection endlichColl = objektAM.stringArray; //Methode aus Objekt wurde zum erstellen des Arrays genutzt
+        ArrayMaker objektArray = generio.erstellInstanz(); //Klasse wurde aus Variable gelesen und zum Objekt gemacht
+        //Methode aus Objekt wurde zum erstellen des Arrays genutzt
 
-        for (Object stringis : endlichColl) {
+        GenericContainer<NumbersMaker> generioNum = new GenericContainer(NumbersMaker.class);
+
+        NumbersMaker objektNumArray = generioNum.erstellInstanz();
+
+        Collection arrColl = objektArray.einArray;
+
+        System.out.println("Elemente der Arraylist:\n");
+        for (Object stringis : arrColl) {
             System.out.println(stringis);
+        }
+
+        System.out.println("Elemente des Stringarrays:\n");
+        for (int xy : objektNumArray.einArray) {
+            System.out.println(xy);
         }
     }
 
